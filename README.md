@@ -94,7 +94,7 @@ Mappings and interface settings are automatically stored in `~/.config/asus_dial
 - step one: have you tried turning it off and on again?
 - step two: look if you're running the script as root
 - step three: Does your wheel work in the debug page?
-- step four: submit an issue (I only have the ProArt Studiobook 16 OLED H5600QA so I can't test on other devices)
+- step four: submit an issue (I only have the ProArt Studiobook 16 OLED H7600ZM so I can't test on other devices)
 
 **can you add xyz feature?**
 - maybe, submit an issue and I'll see what I can do
