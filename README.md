@@ -83,6 +83,22 @@ Mappings and interface settings are automatically stored in `~/.config/asus_dial
 }
 ```
 
+## FAQ
+**Why is this project created?**
+- Because Asus doesn't provide native Linux support for the ProArt Studiobook dial. and the other projects didn't satisfy my needs.
+
+**Why is the project named Senkai X?**
+- Senkai (旋回) in japanese means "revolve" or "turn around" which is what the dial does. and the X just sounds cool.
+
+**I have an issue with xyz**
+- step one: have you tried turning it off and on again?
+- step two: look if you're running the script as root
+- step three: Does your wheel work in the debug page?
+- step four: submit an issue (I only have the ProArt Studiobook 16 OLED H5600QA so I can't test on other devices)
+
+**can you add xyz feature?**
+- maybe, submit an issue and I'll see what I can do
+
 ## Credits
 This project was largely synthesized using the Asus ProArt dial topology patterns.
 - Created By: Kyoukomelk
