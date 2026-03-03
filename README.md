@@ -7,10 +7,12 @@ Senkai X is a Linux-compatible daemon and graphical interface built in Python an
 
 ## Features
 - **Global Hardware Support**: Reads raw device inputs from `/dev/hidraw` to map physical wheel turns and clicks into standard Linux UI events via `uinput`.
+- **Auto-Device Calibration Wizard**: Includes a built-in HID scanner to automatically detect and bind your specific Asus Dial node without manual `/dev/` hunting.
 - **System Tray Integration**: Quietly runs as a background tray icon. Right-click to access debug settings, mapping panels, or exit the thread loop.
-- **Modifier Layers**: Holding down keyboard modifiers (`SHIFT`, `CTRL`, `ALT`, `META`) automatically overlays completely different wheel profiles, allowing limitless keyboard shortcuts on a single physical dial. Out of the box, `SHIFT` converts the dial into a physical mouse scroll wheel.
-- **Visual Feedback OSD**: Displays a sleek, translucent radial overlay (similar to macOS volume sliders) natively on your screen when you adjust the dial, indicating variables like system volume percentages or executing macros like "UNDO".
-- **Dynamic Configuration**: Easily remap layers securely using a comprehensive PyQt5 configuration GUI. Automatically structures configurations to `~/.config/asus_dial.json` safely.
+- **Modifier Layers**: Holding down keyboard modifiers (`SHIFT`, `CTRL`, `ALT`, `SUPER`) automatically overlays completely different wheel profiles, allowing limitless keyboard shortcuts on a single physical dial. Out of the box, `SHIFT` converts the dial into a physical mouse scroll wheel.
+- **Interactive Wheel OSD Menu**: Provides an immersive, graphical on-screen radial menu for complex macro navigation. Supports hierarchical sub-folders, dynamic SVG back-navigation, and continuous rotation selection before confirmation.
+- **Polished Visual OSD**: Custom PyQT5 `paintEvent` rendering engine drawing dark, translucent rings with color-tinted Ionicon SVGs, magnified center displays, and seamless gradients natively onto your monitor.
+- **Editable Tree Menu UI**: A robust PyQt5 `QTreeWidget` GUI lets you dynamically add folders, edit node labels, and select `.svg` icons for menus without touching internal JSON.
 
 ## Prerequisites
 Asus Dial hardware intercepts require root permissions in Linux. To securely operate the UInput virtual keyboard and HID endpoints, you must execute the script as root (`sudo`).
@@ -18,7 +20,7 @@ Asus Dial hardware intercepts require root permissions in Linux. To securely ope
 ### Dependencies
 You need `python3` alongside a standard environment manager (such as `venv`).
 The application leverages the following libraries:
-- `evdev` (For HID event parsing and simulated keyboard/mouse input injection)
+- `evdev` (For HID event parsing and virtual input injection)
 - `PyQt5` (For the modern tray menu and multi-page settings interfaces)
 
 ## Installation & Setup
@@ -29,24 +31,24 @@ The application leverages the following libraries:
    cd senkai-x
    ```
 
-2. **Setup a isolated virtual environment**:
+2. **Setup an isolated virtual environment**:
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    pip install evdev PyQt5
    ```
 
-3. **Install the `wpctl` or `amixer` backends**:
-   Volume control automatically defaults to PipeWire (`wpctl`). If you are running an older desktop standard, the app falls back to ALSA `amixer`. Ensure one of those packages is properly installed on your system.
+3. **Install the `wpctl` or `amixer` backends (Optional)**:
+   Volume controls rely on PipeWire (`wpctl`) or ALSA `amixer`. Ensure one of those packages is properly installed if you bind media keys.
 
 4. **Launch the software execution loop**:
    ```bash
    sudo ./venv/bin/python main.py
    ```
-   *Note: Superuser access is strictly required initially to attach the raw device listeners to the `/dev` folder and mount virtual input nodes.*
+   *Note: Superuser access is strictly required to attach the raw device listeners to the `/dev` folder and mount virtual input nodes.*
 
 ## Configuration Structure
-Mappings are stored in `~/.config/asus_dial.json`. The software can seamlessly be extended by adjusting the internal JSON syntax arrays or leveraging the GUI.
+Mappings and interface settings are automatically stored in `~/.config/asus_dial.json`. The software can be customized using the provided GUI, or manually edited if preferred.
 
 ```json
 {
@@ -64,7 +66,17 @@ Mappings are stored in `~/.config/asus_dial.json`. The software can seamlessly b
     },
     "settings": {
         "osd_position": "Center",
-        "osd_monitor": 0
+        "osd_monitor": 0,
+        "menu_layout": [
+            {
+                "label": "Music",
+                "type": "folder",
+                "icon": "musical-notes.svg",
+                "children": [
+                    {"label": "PLAY / PAUSE", "type": "action", "action": "PLAYPAUSE", "icon": "play.svg"}
+                ]
+            }
+        ]
     }
 }
 ```

@@ -9,9 +9,9 @@ class HidReaderThread(QThread):
     click_event = pyqtSignal(bool)     # True for pressed
     error_occurred = pyqtSignal(str)
 
-    def __init__(self, hid_node_id=4, parent=None):
+    def __init__(self, hid_path="/dev/hidraw4", parent=None):
         super().__init__(parent)
-        self.hid_path = f"/dev/hidraw{hid_node_id}"
+        self.hid_path = hid_path
         self.running = False
         self.fd = None
 

@@ -18,7 +18,8 @@ class ActionExecutor:
                         e.KEY_BACKSPACE, e.KEY_DELETE,
                         e.KEY_VOLUMEUP, e.KEY_VOLUMEDOWN, e.KEY_MUTE,
                         e.KEY_PAGEUP, e.KEY_PAGEDOWN,
-                        e.KEY_Z, e.KEY_Y, e.KEY_C, e.KEY_V, e.KEY_X
+                        e.KEY_Z, e.KEY_Y, e.KEY_C, e.KEY_V, e.KEY_X,
+                        e.KEY_PLAYPAUSE, e.KEY_NEXTSONG, e.KEY_PREVIOUSSONG
                     ],
                     e.EV_REL: [e.REL_WHEEL]
                 }
