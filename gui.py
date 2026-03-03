@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import (
     QStackedWidget, QFrame, QMessageBox, QTreeWidget, QTreeWidgetItem, QSizePolicy, QGridLayout
 )
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QCursor, QPainter, QPen, QColor, QFont
+from PyQt5.QtGui import QCursor, QPainter, QPen, QColor, QFont, QPixmap
 from dial_osd import DialOSD
 from hid_reader import HidReaderThread
 from hid_scanner import HidScannerThread
@@ -105,8 +105,16 @@ class MainWindow(QMainWindow):
         sidebar_layout = QVBoxLayout(sidebar)
         
         # Brand Heading
-        brand_lbl = QLabel("Senkai X\nBy: Kyoukomelk")
-        brand_lbl.setStyleSheet("font-size: 16px; font-weight: bold; padding: 20px 0px; border: none;")
+        logo_lbl = QLabel()
+        logo_pixmap = QPixmap("Img/logo.png")
+        if not logo_pixmap.isNull():
+            logo_lbl.setPixmap(logo_pixmap.scaled(150, 150, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        logo_lbl.setAlignment(Qt.AlignCenter)
+        logo_lbl.setStyleSheet("padding-top: 20px; border: none;")
+        sidebar_layout.addWidget(logo_lbl)
+        
+        brand_lbl = QLabel("Senkai X")
+        brand_lbl.setStyleSheet("font-size: 16px; font-weight: bold; padding-bottom: 20px; border: none;")
         brand_lbl.setAlignment(Qt.AlignCenter)
         sidebar_layout.addWidget(brand_lbl)
         

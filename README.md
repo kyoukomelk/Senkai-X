@@ -1,9 +1,11 @@
-# Senkai X - Asus Dial Linux Control
+# Senkai X - Universal Dial Linux Control
+
+<div align="center">
+  <img src="./Img/logo.png" alt="Senkai X Logo" width="300" />
+</div>
 
 ## Overview
 Senkai X is a Linux-compatible daemon and graphical interface built in Python and PyQt5. It restores and enhances the functionality of the physical Asus ProArt Studiobook dial on Linux distributions (such as Ubuntu, Arch, Fedora, etc.). By intercepting raw HID inputs via `evdev`, Senkai X translates physical dial interactions into rich, system-wide keyboard macros, media controls, and global mouse vertical scrolling events.
-
-![Wireframe Match Application Architecture](./assets/screenshot.png) <!-- Update later -->
 
 ## Features
 - **Global Hardware Support**: Reads raw device inputs from `/dev/hidraw` to map physical wheel turns and clicks into standard Linux UI events via `uinput`.
@@ -84,3 +86,6 @@ Mappings and interface settings are automatically stored in `~/.config/asus_dial
 ## Credits
 This project was largely synthesized using the Asus ProArt dial topology patterns.
 - Created By: Kyoukomelk
+- Icons: Ionicon
+- Code: Antigravity + Google Gemini
+- UI/UX: Kyoukomelk
